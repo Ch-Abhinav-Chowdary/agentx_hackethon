@@ -145,7 +145,7 @@ const Domains = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="section-title text-center"
+                    className="section-title text-center val"
                 >
                     HACKATHON <span className="text-gradient">DOMAINS</span>
                 </motion.h2>

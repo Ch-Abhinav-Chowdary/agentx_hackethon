@@ -118,7 +118,11 @@
     opacity: 0.15;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 650px) {
+    .domains-section {
+        padding: 4rem 1.5rem;
+    }
+
     .domain-header {
         flex-direction: column;
         text-align: center;
@@ -127,6 +131,10 @@
 
     .domain-card:hover {
         transform: translateY(-5px);
+    }
+
+    .val {
+        font-size: 7vw;
     }
 
     .domain-problems {
