@@ -49,9 +49,9 @@ const Navbar = () => {
                             {link.name}
                         </Link>
                     ))}
-                    <button className="register-btn">
+                    <a href="https://forms.gle/ZJtNeNPLY6sFAdf88" target="_blank" rel="noopener noreferrer" className="register-btn">
                         Register
-                    </button>
+                    </a>
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -77,9 +77,9 @@ const Navbar = () => {
                             {link.name}
                         </Link>
                     ))}
-                    <button className="register-btn" style={{ width: '100%' }}>
+                    <a href="https://forms.gle/ZJtNeNPLY6sFAdf88" target="_blank" rel="noopener noreferrer" className="register-btn" style={{ width: '100%', textAlign: 'center' }}>
                         Register
-                    </button>
+                    </a>
                 </motion.div>
             )}
         </motion.nav>
