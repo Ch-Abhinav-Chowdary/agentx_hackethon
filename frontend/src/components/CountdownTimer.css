@@ -1,0 +1,134 @@
+.countdown-container {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(0, 240, 255, 0.4);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+    animation: borderPulse 3s infinite;
+}
+
+@keyframes borderPulse {
+
+    0%,
+    100% {
+        border-color: rgba(0, 240, 255, 0.4);
+        box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+    }
+
+    50% {
+        border-color: rgba(0, 240, 255, 0.8);
+        box-shadow: 0 0 40px rgba(0, 240, 255, 0.4);
+    }
+}
+
+.countdown-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.countdown-icon {
+    color: var(--accent-cyan);
+    animation: pulse 2s infinite;
+}
+
+.countdown-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #ff4444, var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.countdown-title::after {
+    content: ' - Dec 28, 2025';
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    color: #ff4444;
+    -webkit-text-fill-color: #ff4444;
+    font-weight: 600;
+    animation: pulse 2s infinite;
+}
+
+.countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(189, 0, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.countdown-unit:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 8px 25px rgba(0, 240, 255, 0.2);
+}
+
+.countdown-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.countdown-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .countdown-container {
+        padding: 1.5rem;
+    }
+
+    .countdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .countdown-value {
+        font-size: 2rem;
+    }
+
+    .countdown-label {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .countdown-grid {
+        gap: 0.75rem;
+    }
+
+    .countdown-unit {
+        padding: 1rem 0.5rem;
+    }
+
+    .countdown-value {
+        font-size: 1.75rem;
+    }
+}

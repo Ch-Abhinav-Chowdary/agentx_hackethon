@@ -3,6 +3,9 @@ import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { ArrowRight, Code, Cpu, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import HackerText from './HackerText';
+import ParticleBackground from './ParticleBackground';
+import CountUp from './CountUp';
+import CountdownTimer from './CountdownTimer';
 import './Hero.css';
 
 const Hero = () => {
@@ -21,6 +24,7 @@ const Hero = () => {
     return (
         <section id="home" className="hero">
             <div className="hero-background">
+                <ParticleBackground />
                 <div className="glow-sphere sphere-1"></div>
                 <div className="glow-sphere sphere-2"></div>
                 <div className="grid-overlay"></div>
@@ -71,6 +75,11 @@ const Hero = () => {
                     </Link>
                 </motion.div>
 
+                <CountdownTimer
+                    targetDate="2025-12-28T23:59:59"
+                    title="Registration Closes In"
+                />
+
                 <motion.div
                     ref={cardRef}
                     style={{ rotateX, rotateY, perspective: 1000 }}
@@ -94,7 +103,9 @@ const Hero = () => {
                     <div className="stat-item">
                         <Cpu size={24} className="stat-icon" />
                         <div className="stat-info">
-                            <span className="stat-value">500+</span>
+                            <span className="stat-value">
+                                <CountUp end={500} duration={2} suffix="+" />
+                            </span>
                             <span className="stat-label">Hackers</span>
                         </div>
                     </div>

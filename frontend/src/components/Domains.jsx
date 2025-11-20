@@ -76,6 +76,61 @@ const domains = [
     }
 ];
 
+const DomainCard = ({ domain, index, expandedDomain, toggleDomain }) => {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className={`domain-card glass ${expandedDomain === domain.id ? 'expanded' : ''}`}
+            onClick={() => toggleDomain(domain.id)}
+        >
+            <div className="domain-header" style={{ '--domain-color': domain.color }}>
+                <div className="domain-icon-wrapper" style={{ color: domain.color }}>
+                    {domain.icon}
+                </div>
+                <div className="domain-info">
+                    <h3 className="domain-title">{domain.title}</h3>
+                    <p className="domain-desc">{domain.description}</p>
+                </div>
+                <div className="domain-toggle">
+                    {expandedDomain === domain.id ? <ChevronUp /> : <ChevronDown />}
+                </div>
+            </div>
+
+            <AnimatePresence>
+                {expandedDomain === domain.id && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="domain-problems"
+                        style={{ '--domain-color': domain.color }}
+                    >
+                        <h4>Problem Statements:</h4>
+                        <ul>
+                            {domain.problems.map((problem, i) => (
+                                <motion.li
+                                    key={i}
+                                    initial={{ x: -20, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    transition={{ delay: i * 0.05 }}
+                                    style={{ borderLeftColor: domain.color }}
+                                >
+                                    {problem}
+                                </motion.li>
+                            ))}
+                        </ul>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            <div className="domain-glow" style={{ background: domain.color }}></div>
+        </motion.div>
+    );
+};
+
 const Domains = () => {
     const [expandedDomain, setExpandedDomain] = useState(null);
 
@@ -97,56 +152,13 @@ const Domains = () => {
 
                 <div className="domains-grid">
                     {domains.map((domain, index) => (
-                        <motion.div
+                        <DomainCard
                             key={domain.id}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className={`domain-card glass ${expandedDomain === domain.id ? 'expanded' : ''}`}
-                            style={{ '--domain-color': domain.color }}
-                            onClick={() => toggleDomain(domain.id)}
-                        >
-                            <div className="domain-header">
-                                <div className="domain-icon-wrapper" style={{ color: domain.color }}>
-                                    {domain.icon}
-                                </div>
-                                <div className="domain-info">
-                                    <h3 className="domain-title">{domain.title}</h3>
-                                    <p className="domain-desc">{domain.description}</p>
-                                </div>
-                                <div className="domain-toggle">
-                                    {expandedDomain === domain.id ? <ChevronUp /> : <ChevronDown />}
-                                </div>
-                            </div>
-
-                            <AnimatePresence>
-                                {expandedDomain === domain.id && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: 'auto', opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="domain-problems"
-                                    >
-                                        <h4>Problem Statements:</h4>
-                                        <ul>
-                                            {domain.problems.map((problem, i) => (
-                                                <motion.li
-                                                    key={i}
-                                                    initial={{ x: -20, opacity: 0 }}
-                                                    animate={{ x: 0, opacity: 1 }}
-                                                    transition={{ delay: i * 0.05 }}
-                                                >
-                                                    {problem}
-                                                </motion.li>
-                                            ))}
-                                        </ul>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-
-                            <div className="domain-glow" style={{ background: domain.color }}></div>
-                        </motion.div>
+                            domain={domain}
+                            index={index}
+                            expandedDomain={expandedDomain}
+                            toggleDomain={toggleDomain}
+                        />
                     ))}
                 </div>
             </div>
