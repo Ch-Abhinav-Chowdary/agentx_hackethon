@@ -1,0 +1,132 @@
+.schedule-section {
+    padding: 8rem 2rem;
+    background: var(--bg-primary);
+    min-height: 100vh;
+}
+
+.schedule-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.timeline {
+    position: relative;
+    margin-top: 4rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple));
+    opacity: 0.3;
+}
+
+.timeline-phase {
+    margin-bottom: 4rem;
+    position: relative;
+    padding-left: 3rem;
+}
+
+.timeline-phase::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--bg-primary);
+    border: 2px solid var(--accent-cyan);
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.phase-header {
+    margin-bottom: 2rem;
+}
+
+.phase-header h3 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.phase-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-cyan);
+    font-size: 0.9rem;
+    background: rgba(0, 240, 255, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+}
+
+.phase-events {
+    display: grid;
+    gap: 1rem;
+}
+
+.event-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateX(10px);
+    border-color: var(--accent-purple);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.event-time {
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.event-content h4 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.event-content p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 10px;
+    }
+
+    .timeline-phase {
+        padding-left: 2rem;
+    }
+
+    .timeline-phase::before {
+        left: 1px;
+    }
+
+    .event-card {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .event-time {
+        color: var(--accent-cyan);
+    }
+}
