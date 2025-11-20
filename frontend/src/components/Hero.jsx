@@ -58,20 +58,6 @@ const Hero = () => {
                 </motion.p>
 
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                    className="hero-actions"
-                >
-                    <button className="primary-btn">
-                        Register Now <ArrowRight size={20} />
-                    </button>
-                    <Link to="/domains" className="secondary-btn">
-                        View Domains
-                    </Link>
-                </motion.div>
-
-                <motion.div
                     ref={cardRef}
                     style={{ rotateX, rotateY, perspective: 1000 }}
                     onMouseMove={handleMouseMove}
