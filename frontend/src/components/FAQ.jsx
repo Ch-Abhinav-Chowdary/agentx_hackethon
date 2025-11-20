@@ -90,7 +90,7 @@ const FAQ = () => {
                     viewport={{ once: true }}
                     className="faq-header"
                 >
-                    <h2 className="section-title" style={{ fontSize: '6.5vw' }}>
+                    <h2 className="section-title val">
                         FREQUENTLY ASKED <span className="text-gradient">QUESTIONS</span>
                     </h2>
                     <p className="faq-subtitle">
