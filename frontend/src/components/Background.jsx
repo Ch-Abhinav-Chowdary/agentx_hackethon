@@ -17,6 +17,18 @@ const Background = () => {
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
+        let mouse = { x: null, y: null };
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
         const particles = [];
         const particleCount = 100;
 
@@ -28,11 +40,32 @@ const Background = () => {
                 this.vy = (Math.random() - 0.5) * 0.5;
                 this.size = Math.random() * 2;
                 this.color = Math.random() > 0.5 ? '#00A1E0' : '#9050E9'; // SF Blue or Einstein Purple
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
             }
 
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
+
+                // Mouse interaction
+                if (mouse.x != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    const forceDirectionX = dx / distance;
+                    const forceDirectionY = dy / distance;
+                    const maxDistance = 150;
+                    const force = (maxDistance - distance) / maxDistance;
+
+                    if (distance < maxDistance) {
+                        const directionX = forceDirectionX * force * this.density;
+                        const directionY = forceDirectionY * force * this.density;
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    }
+                }
 
                 if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.vy *= -1;

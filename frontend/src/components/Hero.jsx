@@ -1,10 +1,23 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { ArrowRight, Code, Cpu, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import HackerText from './HackerText';
 import './Hero.css';
 
 const Hero = () => {
+    const cardRef = useRef(null);
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const rotateX = useTransform(y, [-100, 100], [10, -10]);
+    const rotateY = useTransform(x, [-100, 100], [-10, 10]);
+
+    const handleMouseMove = (event) => {
+        const rect = cardRef.current.getBoundingClientRect();
+        x.set(event.clientX - rect.left - rect.width / 2);
+        y.set(event.clientY - rect.top - rect.height / 2);
+    };
+
     return (
         <section id="home" className="hero">
             <div className="hero-background">
@@ -31,7 +44,7 @@ const Hero = () => {
                     className="hero-title"
                 >
                     BUILD THE FUTURE <br />
-                    WITH <span className="text-gradient">AGENTFORCE</span>
+                    WITH <HackerText text="AGENTFORCE" className="text-gradient" />
                 </motion.h1>
 
                 <motion.p
@@ -59,6 +72,13 @@ const Hero = () => {
                 </motion.div>
 
                 <motion.div
+                    ref={cardRef}
+                    style={{ rotateX, rotateY, perspective: 1000 }}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={() => {
+                        x.set(0);
+                        y.set(0);
+                    }}
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.8 }}

@@ -1,0 +1,27 @@
+.hacker-text {
+    font-family: 'Orbitron', sans-serif;
+    /* Ensure futuristic font */
+    cursor: default;
+    display: inline-block;
+    min-width: 300px;
+    /* Prevent layout shift during scramble if needed, adjust as necessary */
+}
+
+/* Optional: Add a cursor effect */
+.hacker-text::after {
+    content: '_';
+    opacity: 0;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
